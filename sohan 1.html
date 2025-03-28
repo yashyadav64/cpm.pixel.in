@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+    <style>
+        body {
+            background: url('https://source.unsplash.com/1600x900/?photography') no-repeat center center/cover;
+            min-height: 100vh;
+            color: white;
+        }
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .sidebar {
+            background: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+            padding-top: 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            color: black;
+        }
+        /** card size **/
+        .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.card img {
+    height: 500px; /* सभी इमेज का साइज एक समान रहेगा */
+    object-fit: cover;
+}
+.card-body {
+    flex-grow: 1; /* सभी कार्ड की ऊंचाई बराबर रहेगी */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+body {
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); /* Dark Gradient */
+    min-height: 100vh;
+    color: white;
+    scroll-behavior: smooth;
+}
+
+/* Navbar और Sidebar को थोड़ा Transparent कर दिया */
+.navbar, .sidebar {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+/* Cards के पीछे Blur Background ताकि content और pop-out हो */
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Footer Background Dark */
+footer {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+.carousel-item img {
+    width: 100%;
+    height: 600x; /* स्लाइडर की हाइट एक समान होगी */
+    object-fit: cover; /* इमेज को ठीक से fit करेगा */
+}
+.carousel-item img {
+    width: 100%;
+    height: 400px; /* लैपटॉप और मोबाइल के लिए सही साइज */
+    object-fit: contain; /* पूरी इमेज दिखेगी, क्रॉप नहीं होगी */
+}
+.card {
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+}
+.card img {
+    width: 100%;
+    height: 600px; /* Fixed height for uniformity */
+    object-fit: cover; /* Ensures the image covers the area properly */
+    border-radius: 10px;
+}
+.card img {
+    width: 100%;
+    height: 450px; /* सभी इमेज का साइज छोटा किया */
+    object-fit: cover; /* इमेज पूरी cover करेगी */
+    border-radius: 10px;
+}
+.navbar-brand{
+    font-family: serif;
+}
+
+    .video-section {
+        background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+        padding: 50px 0;
+        color: white;
+        border-radius: 20px;
+    }
+    .video-section h2 {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .video-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .video-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+    }
+    .video-wrapper video {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+        .footer {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            padding: 40px 0;
+            background-color: #0f3460;
+        }
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: orange;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .footer ul {
+            padding: 0;
+        }
+        .footer ul li {
+            list-style: none;
+            margin-bottom: 8px;
+        }
+        .footer ul li a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s ease-in-out;
+        }
+        .footer ul li a:hover {
+            color: #FFD700;
+        }
+        .social-icons a {
+            color: white;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: 0.3s ease-in-out;
+        }
+        .social-icons a:hover {
+            color: #FFD700;
+            transform: scale(1.2);
+        }
+        .footer-line {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 20px 0;
+        }
+        .copyright {
+            font-size: 14px;
+        }
+        body {
+    background-color: #f8f8f8;
+}
+
+.service-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.service-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.service-card h3::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 2px;
+    background: #333;
+    margin: 8px 0;
+}
+
+.service-card p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+body {
+    background-color: #f8f8f8;
+}
+
+.text-section {
+    text-align: left;
+}
+
+.script-font {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 36px;
+    color: #e47b7b;
+    font-style: italic;
+    position: relative;
+    display: inline-block;
+}
+
+.script-font::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 2px;
+    background: #e47b7b;
+    margin-top: 5px;
+}
+
+.stat h3 {
+    font-size: 40px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.2);
+}
+
+.stat h5 {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.stat p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #25D366;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.whatsapp-button img {
+    width: 20px;
+    height: 20px;
+}
+.navbar, .sidebar {
+    background: rgba(0, 0, 0, 0.95) !important; /* डार्क बैकग्राउंड फिक्स */
+    color: white;
+}
+
+.sidebar {
+    min-height: 100vh;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+.navbar-brand, .navbar-nav .nav-link {
+    color: white !important;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #FFD700 !important; /* गोल्डन हाइलाइट */
+}
+.sidebar {
+    background: #121212;
+    width: 250px;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+
+
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">cpm pixel</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="offcanvas offcanvas-start sidebar" tabindex="-1" id="sidebar">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-light">Categories</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav flex-column">
+                <li class="nav-item"><a href="#" class="nav-link text-light" style="font-size: large;">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-light">Wedding</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-light">Nature</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-light">Portraits</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-light">Events</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Carousel Slider -->
+    <div id="carouselExample" class="carousel slide mt-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://i.pinimg.com/736x/29/3f/62/293f62f4278af6b2832803d783393382.jpg" class="d-block w-100" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+                <img src="https://i.pinimg.com/736x/77/6a/c3/776ac3f544446dc57625c29da6dfa54d.jpg" class="d-block w-100" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+                <img src="https://i.pinimg.com/736x/e3/3e/0a/e33e0acba436e8dc46714c201c9f2e3e.jpg" class="d-block w-100" alt="Slide 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card">
+                    <img src="https://www.ptaufiqphotography.com/wp-content/uploads/2024/06/ptaufiq-indian-wedding-rajkot-India-ceremony-couple-portraits.jpg" class="card-img-top" alt="Wedding">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Wedding Photography</h5>
+                        <button class="btn btn-primary w-100">Book Your Order</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://pixahive.com/wp-content/uploads/2020/09/Indian-Couple-in-the-Nature-28971-pixahive.jpg" class="card-img-top" alt="Nature">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Nature Photography</h5>
+                        <button class="btn btn-primary w-100">Book Your Order</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/9b/2a/8c/9b2a8c999b884f46223034ae225b0df2.jpg" class="card-img-top" alt="Portrait">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Portrait Photography</h5>
+                        <button class="btn btn-primary w-100">Book Your Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/6d/d0/87/6dd087562495c9a9d5d6d8245b00f04d.jpg" class="card-img-top" alt="Wedding">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/e1/bf/24/e1bf2465520515409e624cc5300d4cb1.jpg" class="card-img-top" alt="Couple">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/96/7e/5c/967e5c9a75df05c0014ce7ae4e1973f8.jpg" class="card-img-top" alt="Haldi Ceremony">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/fe/57/19/fe5719666e57ff671476c7fd18eef3cd.jpg" class="card-img-top" alt="Mehendi Function">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/67/4e/60/674e6047e81aa57169bbb41f7b407452.jpg" class="card-img-top" alt="Bride Portrait">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/59/77/1a/59771acc34ad2c32a77ee89c2dc8f0e1.jpg" class="card-img-top" alt="Wedding Moment">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Video Section -->
+<section class="video-section container mt-5">
+    <h2 class="text-center mb-4">🎥 Featured Videos</h2>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card video-card">
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="WhatsApp Video 2025-03-19 at 09.47.59_c34d76d9.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Wedding Highlights</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card video-card">
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="v1.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Pre-Wedding Shoot</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card video-card">
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="v2.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Nature Videography</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container py-5">
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="service-card">
+                <h3>Photography</h3>
+                <p>Candid photography (focusing on natural candid shots of the bride-groom and main family) & traditional photography (coverage of the entire event).</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="service-card">
+                <h3>Videography</h3>
+                <p>Cinematography (artistic style videography with focus on the bride-groom and main family and their priceless candid moments) & traditional videography (coverage of the entire event).</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="service-card">
+                <h3>Photobooks & Albums</h3>
+                <p>Handcrafted custom designed wedding photo books and albums to cater to every taste and preference.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="service-card">
+                <h3>Post-Production</h3>
+                <p>Editing services in cinematic teaser and short film & traditional video.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Stats</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container my-5">
+    <div class="row align-items-center">
+        <div class="col-md-6 text-section">
+            <h2 class="script-font">Nurtured to perfection</h2>
+            <div class="row">
+                <div class="col-6 stat">
+                    <h3>75+</h3>
+                    <h5>CITIES TRAVELLED</h5>
+                    <p>Spread across the globe.</p>
+                </div>
+                <div class="col-6 stat">
+                    <h3>1000+</h3>
+                    <h5>HAPPY COUPLES</h5>
+                    <p>Hailing from varied cultures, regions, and religions.</p>
+                </div>
+                <div class="col-6 stat">
+                    <h3>1M+</h3>
+                    <h5>PHOTOS DELIVERED</h5>
+                    <p>Snapshots of life-defining moments.</p>
+                </div>
+                <div class="col-6 stat">
+                    <h3>850+</h3>
+                    <h5>VIDEOS PRODUCED</h5>
+                    <p>Edited videos that are a real tribute to love.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="" alt="Happy Couple" class="img-fluid rounded">
+            <img src="https://www.candidshutters.com/maintenance/wp-content/uploads/2022/10/best-wedding-photographers-india-home.jpg" alt="Happy Couple" class="img-fluid rounded">
+        </div>
+    </div>
+</div>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/your-number" class="whatsapp-button" target="_blank"> 
+    <img src="data:image/png;base64,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" alt="WhatsApp Us"> 
+    Whatsapp Us
+</a>
+
+
+
+    <footer class="footer mt-5">
+        <div class="container text-center">
+            <div class="row">
+                <!-- Logo & Branding -->
+                <div class="col-md-4">
+                    <h4 class="brand">📷 CPM Pixel</h4>
+                    <p>Capturing moments, creating memories.</p>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Portfolio</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Social Media -->
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+    
+            <hr class="footer-line">
+            <p class="copyright">© 2025 CPM Pixel. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+       
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

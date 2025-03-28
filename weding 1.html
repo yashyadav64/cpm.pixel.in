@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+         body {
+            background: #f8f9fa;
+        }
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ff4b1f, #ff9068);
+            color: #fff;
+        }
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background: rgba(0, 0, 0, 0.8);
+            padding-top: 60px;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+        .sidebar a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .menu-btn {
+            font-size: 30px;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img, .card video {
+            height: 500px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+        .card-body {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+        /* Footer Styling */
+.footer {
+    background: #111;
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 16px;
+    margin-top: 50px;
+    position: relative;
+}
+.footer .social-icons {
+    margin: 10px 0;
+}
+.footer .social-icons a {
+    color: #ffcc00;
+    margin: 0 10px;
+    font-size: 22px;
+    transition: 0.3s;
+}
+.footer .social-icons a:hover {
+    color: #ff6600;
+}
+.footer .footer-links {
+    margin-top: 10px;
+}
+.footer .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 14px;
+}
+.footer .footer-links a:hover {
+    text-decoration: underline;
+}
+.footer p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+.footer .cpm-tracking {
+    display: none;
+}
+
+    </style>
+</head>
+<body>
+    <div class="menu-btn" onclick="openSidebar()">☰</div>
+    <div class="sidebar" id="sidebar">
+        <div class="close-btn" onclick="closeSidebar()">×</div>
+        <a href="#about">About</a>
+        <a href="#details">Details</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#videos">Videos</a>
+        <a href="#rsvp">RSVP</a>
+    </div>
+    
+    <div class="container mt-5 text-center" id="gallery">
+        <h2>Haldi memories</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/b1/c7/90/b1c790afba748a8fc8bc917b5174af50.jpg" alt="Wedding Image">
+                    <div class="card-body">
+                        <p>Beautiful Moments</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/c3/d2/4e/c3d24ec34f910319e194c97d3c4ffc53.jpg" alt="Wedding Image">
+                    <div class="card-body">
+                        <p>Special Memories</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/b6/05/ea/b605ea67c56c3872be182580f1e1548e.jpg" alt="Wedding Image">
+                    <div class="card-body">
+                        <p>Unforgettable Day</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container mt-5 text-center" id="gallery">
+        <h2>Mehendi memories</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/36/a1/c2/36a1c2f84e6b15993e3e9459ff633cb6.jpg" alt="Wedding Image">
+                    <div class="card-body">
+                        <p>Beautiful Moments</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/6c/3e/68/6c3e6846dad649ce0d7ea10553ba6712.jpg" alt="Wedding Image">
+                    <div class="card-body">
+                        <p>Special Memories</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/70/87/f2/7087f2a5fae406dcca26b6f2cb8a7117.jpg" alt="Wedding Image">
+                    <div class="card-body">
+                        <p>Unforgettable Day</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Wedding Photo Gallery</h2>
+        <div class="row g-3 gallery">
+            <div class="col-md-4"><img src="https://i.pinimg.com/736x/0a/a3/d8/0aa3d85ec148cc0f3d83e113846ba502.jpg" alt="Wedding Image"></div>
+            <div class="col-md-4"><img src="https://i.pinimg.com/736x/19/ff/07/19ff07574add60990ac483097b5c55ba.jpg" alt="Wedding Image"></div>
+            <div class="col-md-4"><img src="https://i.pinimg.com/736x/d6/90/f4/d690f41a601c05646c542f8ae52c13ba.jpg" alt="Wedding Image"></div>
+            <div class="col-md-4"><img src="https://i.pinimg.com/736x/88/2e/19/882e19a659c25153f764bd998f6659f0.jpg" alt="Wedding Image"></div>
+            <div class="col-md-4"><img src="https://i.pinimg.com/736x/c7/ff/0c/c7ff0c34a484bdcdf379b51f342c295e.jpg" alt="Wedding Image"></div>
+            <div class="col-md-4"><img src="https://i.pinimg.com/736x/c3/c6/d5/c3c6d55d22d6bb0a1472712369b4a037.jpg" alt="Wedding Image"></div>
+            <div class="col-md-4"><img src="https://i.pinimg.com/736x/a4/e6/af/a4e6af7fc273d0b27811af52d192918a.jpg" alt="Wedding Image"></div>
+            <div class="col-md-4"><img src="https://i.pinimg.com/736x/21/97/e1/2197e14491eb51058cf09281c7b6769e.jpg" alt="Wedding Image"></div>
+            <div class="col-md-4"><img src="https://i.pinimg.com/736x/73/ca/07/73ca07f8a74c1336e85d3354f4a494f3.jpg" alt="Wedding Image"></div>
+        </div>
+    </div>
+    
+    <div class="container mt-5 text-center" id="videos">
+        <h2>Video Highlights</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <video controls>
+                        <source src="video1.mp4" type="video/mp4">
+                    </video>
+                    <div class="card-body">
+                        <p>Our Special Moments</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <video controls>
+                        <source src="video2.mp4" type="video/mp4">
+                    </video>
+                    <div class="card-body">
+                        <p>Memorable Vows</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <video controls>
+                        <source src="video3.mp4" type="video/mp4">
+                    </video>
+                    <div class="card-body">
+                        <p>Unforgettable Dance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Section -->
+<footer class="footer">
+    <p>© 2025 Your Wedding | Designed with ❤️ by <strong>Godawari Web Technologies</strong></p>
+    
+    <!-- Social Media Icons -->
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    
+    <!-- Quick Links -->
+    <div class="footer-links">
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Terms of Use</a> | 
+        <a href="#">Contact Us</a>
+    </div>
+
+    <p>All rights reserved. Unauthorized reproduction prohibited.</p>
+
+    <!-- CPM Pixel Tracking -->
+    <img src="https://example.com/cpm-tracking-pixel" class="cpm-tracking">
+</footer>
+
+<!-- FontAwesome Icons (for social media) -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script>
+        function openSidebar() {
+            document.getElementById("sidebar").style.left = "0";
+        }
+        function closeSidebar() {
+            document.getElementById("sidebar").style.left = "-250px";
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

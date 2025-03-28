@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { background-color: #f8f9fa; }
+        .order-card { border: 1px solid #ddd; padding: 15px; margin-top: 10px; border-radius: 5px; background: white; }
+        .uploaded-img { width: 100px; height: 100px; object-fit: cover; margin: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <h2 class="text-center">Manage Orders</h2>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Create Order</h4>
+                <form id="order-form">
+                    <input type="text" id="customer-name" class="form-control mb-3" placeholder="Customer Name" required>
+                    <input type="text" id="customer-mobile" class="form-control mb-3" placeholder="Customer Mobile Number" required>
+                    <input type="text" id="photographer-name" class="form-control mb-3" placeholder="Photographer Name" required>
+                    <input type="date" id="event-date" class="form-control mb-3" required>
+                    <button type="submit" class="btn btn-success">Create Order</button>
+                </form>
+            </div>
+
+            <div class="col-md-6">
+                <h4>View Order</h4>
+                <form id="view-order-form">
+                    <input type="text" id="order-number" class="form-control mb-3" placeholder="Order Number" required>
+                    <input type="text" id="order-passcode" class="form-control mb-3" placeholder="Passcode" required>
+                    <button type="submit" class="btn btn-primary">View Order</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="order-list" class="mt-5"></div>
+    </div>
+
+    <script>
+        let orders = JSON.parse(localStorage.getItem('orders')) || {};
+
+        $(document).ready(function() {
+            $('#order-form').submit(function(e) {
+                e.preventDefault();
+                let customerName = $('#customer-name').val();
+                let mobile = $('#customer-mobile').val();
+                let photographerName = $('#photographer-name').val();
+                let eventDate = $('#event-date').val();
+                let orderNumber = 'ORD' + Math.floor(Math.random() * 100000);
+                let passcode = Math.floor(1000 + Math.random() * 9000);
+
+                orders[orderNumber] = { customerName, mobile, photographerName, eventDate, passcode, images: [] };
+                localStorage.setItem('orders', JSON.stringify(orders));
+
+                alert('Order Created!\nOrder Number: ' + orderNumber + '\nPasscode: ' + passcode);
+            });
+
+            $('#view-order-form').submit(function(e) {
+                e.preventDefault();
+                let orderNumber = $('#order-number').val();
+                let passcode = $('#order-passcode').val();
+
+                if (orders[orderNumber] && orders[orderNumber].passcode == passcode) {
+                    let order = orders[orderNumber];
+                    let orderHTML = `<div class='order-card'><h5>Order: ${orderNumber}</h5>
+                        <p><strong>Customer:</strong> ${order.customerName}</p>
+                        <p><strong>Mobile:</strong> ${order.mobile}</p>
+                        <p><strong>Photographer:</strong> ${order.photographerName}</p>
+                        <p><strong>Date:</strong> ${order.eventDate}</p>
+                        <h6>Uploaded Images:</h6>`;
+                    
+                    order.images.forEach(img => {
+                        orderHTML += `<img src="${img}" class="uploaded-img">`;
+                    });
+
+                    orderHTML += `<br><input type="file" id="image-upload">
+                    <button class='btn btn-info btn-sm' onclick='uploadImage("${orderNumber}")'>Upload Image</button></div>`;
+
+                    $('#order-list').html(orderHTML);
+                } else {
+                    alert('Invalid Order Number or Passcode!');
+                }
+            });
+        });
+
+        function uploadImage(orderNumber) {
+            let fileInput = document.getElementById('image-upload');
+            if (fileInput.files && fileInput.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    orders[orderNumber].images.push(e.target.result);
+                    localStorage.setItem('orders', JSON.stringify(orders));
+                    alert('Image Uploaded Successfully!');
+                    $('#view-order-form').submit();
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>

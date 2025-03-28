@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Order Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div id="login-page" class="login-page">
+        <h1>Login</h1>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <div id="login-error" style="color: red; display: none;">Incorrect username or password</div>
+    </div>
+
+    <div id="admin-panel" class="admin-panel" style="display: none;">
+        <div class="menu-bar">
+            <button id="language-btn">🗣️ Language</button>
+            <button onclick="navigateTo('profile')">👤 Profile</button>
+            <button onclick="navigateTo('account')">💼 Account</button>
+           <a href="E:\MY DATA COCHING\e come 2\login sel.html"> <button onclick="navigateTo('account')"> costumer sale</button></a>
+          <a href="E:\MY DATA COCHING\e come 2\users acunt.html"><button onclick="navigateTo('account')">user Panel</button></a>
+           <a href="E:\MY DATA COCHING\e come 2\order penal page.html"> <button onclick="navigateTo('settings')">order Panel</button></a>
+           <a href="E:\MY DATA COCHING\e come 2\sels report.html"><button onclick="navigateTo('account')">💼 sales Panel</button></a>
+        </div>
+
+        <h1>Admin Panel - Orders</h1>
+        <div class="order-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Item Name</th>
+                        <th>Item ID</th>
+                        <th>Item Price</th>
+                        <th>Customer Name</th>
+                        <th>Order Date</th>
+                        <th>Status</th>
+                        <th>Payment Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="order-table-body"></tbody>
+            </table>
+        </div>
+
+        <div class="add-order">
+            <h2>Add New Order</h2>
+            <form id="order-form">
+                <label for="order-id">Order ID:</label>
+                <input type="text" id="order-id" name="order-id" required>
+                <label for="item-name">Item Name:</label>
+                <input type="text" id="item-name" name="item-name" required>
+                <label for="item-id">Item ID:</label>
+                <input type="text" id="item-id" name="item-id" required>
+                <label for="item-price">Item Price:</label>
+                <input type="number" id="item-price" name="item-price" required>
+                <label for="customer-name">Customer Name:</label>
+                <input type="text" id="customer-name" name="customer-name" required>
+                <label for="order-date">Order Date:</label>
+                <input type="date" id="order-date" name="order-date" required>
+                <label for="status">Status:</label>
+                <select id="status" name="status" required>
+                    <option value="pending">Pending</option>
+                    <option value="shipped">Shipped</option>
+                    <option value="delivered">Delivered</option>
+                </select>
+                <label for="payment-status">Payment Status:</label>
+                <select id="payment-status" name="payment-status" required>
+                    <option value="paid">Paid</option>
+                    <option value="unpaid">Unpaid</option>
+                </select>
+                <button type="submit">Add Order</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <style>
+        /* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Login Page */
+.login-page {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-page h1 {
+    text-align: center;
+}
+
+.login-page input, .login-page button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Admin Panel */
+.admin-panel {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-bar {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+.menu-bar button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.menu-bar button:hover {
+    background-color: #0056b3;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Order List Table */
+.order-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-list th, .order-list td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+/* Add Order Form */
+.add-order {
+    margin-top: 30px;
+}
+
+.add-order h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.add-order form {
+    display: grid;
+    gap: 10px;
+}
+
+.add-order input, .add-order select {
+    padding: 8px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.add-order button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-order button:hover {
+    background-color: #218838;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .admin-panel {
+        width: 90%;
+    }
+
+    .menu-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+    </style>
+    <script>
+        // Define user credentials
+const validUsername = "yash";
+const validPassword = "123456";
+
+// Function to handle login
+document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Check if login is valid
+    if (username === validUsername && password === validPassword) {
+        document.getElementById('login-page').style.display = 'none';
+        document.getElementById('admin-panel').style.display = 'block';
+        loadOrders();
+    } else {
+        document.getElementById('login-error').style.display = 'block';
+    }
+});
+
+// Function to load orders from LocalStorage
+function loadOrders() {
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const orderTableBody = document.getElementById('order-table-body');
+    orderTableBody.innerHTML = ''; // Clear current orders
+
+    orders.forEach(order => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${order.orderId}</td>
+            <td>${order.itemName}</td>
+            <td>${order.itemId}</td>
+            <td>${order.itemPrice}</td>
+            <td>${order.customerName}</td>
+            <td>${order.orderDate}</td>
+            <td>${order.status}</td>
+            <td>${order.paymentStatus}</td>
+            <td>
+                <button onclick="editOrder('${order.orderId}')">Edit</button>
+                <button onclick="deleteOrder('${order.orderId}')">Delete</button>
+            </td>
+        `;
+        orderTableBody.appendChild(row);
+    });
+}
+
+// Function to handle order form submission
+document.getElementById('order-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const orderId = document.getElementById('order-id').value;
+    const itemName = document.getElementById('item-name').value;
+    const itemId = document.getElementById('item-id').value;
+    const itemPrice = document.getElementById('item-price').value;
+    const customerName = document.getElementById('customer-name').value;
+    const orderDate = document.getElementById('order-date').value;
+    const status = document.getElementById('status').value;
+    const paymentStatus = document.getElementById('payment-status').value;
+
+    const newOrder = { orderId, itemName, itemId, itemPrice, customerName, orderDate, status, paymentStatus };
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders.push(newOrder);
+    localStorage.setItem('orders', JSON.stringify(orders));
+
+    document.getElementById('order-form').reset();
+    loadOrders();
+});
+
+// Function to delete order
+function deleteOrder(orderId) {
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders = orders.filter(order => order.orderId !== orderId);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    loadOrders();
+}
+
+// Function to edit order
+function editOrder(orderId) {
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const order = orders.find(o => o.orderId === orderId);
+
+    // Pre-fill the form with the order data
+    document.getElementById('order-id').value = order.orderId;
+    document.getElementById('item-name').value = order.itemName;
+    document.getElementById('item-id').value = order.itemId;
+    document.getElementById('item-price').value = order.itemPrice;
+    document.getElementById('customer-name').value = order.customerName;
+    document.getElementById('order-date').value = order.orderDate;
+    document.getElementById('status').value = order.status;
+    document.getElementById('payment-status').value = order.paymentStatus;
+
+    // Remove the order
+    deleteOrder(orderId);
+}
+
+// Function to toggle language
+let currentLanguage = 'en';
+
+document.getElementById('language-btn').addEventListener('click', function() {
+    if (currentLanguage === 'en') {
+        document.body.innerHTML = document.body.innerHTML.replace(/Order ID/g, 'आर्डर आईडी')
+            .replace(/Item Name/g, 'आइटम का नाम')
+            .replace(/Item ID/g, 'आइटम आईडी')
+            .replace(/Item Price/g, 'आइटम मूल्य')
+            .replace(/Customer Name/g, 'ग्राहक का नाम')
+            .replace(/Order Date/g, 'आर्डर तारीख')
+            .replace(/Status/g, 'स्थिति')
+            .replace(/Payment Status/g, 'भुगतान स्थिति')
+            .replace(/Add New Order/g, 'नया आदेश जोड़ें')
+            .replace(/Profile/g, 'प्रोफाइल')
+            .replace(/Account/g, 'खाता')
+            .replace(/Settings/g, 'सेटिंग्स');
+        currentLanguage = 'hi';
+    } else {
+        location.reload();
+    }
+});
+
+// Navigation for Profile, Account, and Settings
+function navigateTo(page) {
+    alert(`Redirecting to ${page}`);
+}
+// ऑर्डर लोड करने का फंक्शन
+function loadOrders() {
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const orderTableBody = document.getElementById('order-table-body');
+    orderTableBody.innerHTML = ''; 
+
+    orders.forEach(order => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${order.orderId}</td>
+            <td>${order.itemName}</td>
+            <td>${order.itemId}</td>
+            <td>${order.itemPrice}</td>
+            <td>${order.customerName}</td>
+            <td>${order.orderDate}</td>
+            <td>${order.status}</td>
+            <td>${order.paymentStatus}</td>
+            <td>
+                <button onclick="editOrder('${order.orderId}')">✏️ Edit</button>
+                <button onclick="deleteOrder('${order.orderId}')">🗑️ Delete</button>
+            </td>
+        `;
+        orderTableBody.appendChild(row);
+    });
+}
+
+// ऑर्डर डिलीट करने का फंक्शन
+function deleteOrder(orderId) {
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders = orders.filter(order => order.orderId !== orderId);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    loadOrders();
+}
+
+// ऑर्डर एडिट करने का फंक्शन
+function editOrder(orderId) {
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    let order = orders.find(o => o.orderId === orderId);
+
+    if (!order) return;
+
+    // फॉर्म में डेटा भरना
+    document.getElementById('order-id').value = order.orderId;
+    document.getElementById('item-name').value = order.itemName;
+    document.getElementById('item-id').value = order.itemId;
+    document.getElementById('item-price').value = order.itemPrice;
+    document.getElementById('customer-name').value = order.customerName;
+    document.getElementById('order-date').value = order.orderDate;
+    document.getElementById('status').value = order.status;
+    document.getElementById('payment-status').value = order.paymentStatus;
+
+    // डिलीट करके नया ऑर्डर सेव करना
+    deleteOrder(orderId);
+}
+
+// नया ऑर्डर जोड़ने का फंक्शन
+document.getElementById('order-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const orderId = document.getElementById('order-id').value;
+    const itemName = document.getElementById('item-name').value;
+    const itemId = document.getElementById('item-id').value;
+    const itemPrice = document.getElementById('item-price').value;
+    const customerName = document.getElementById('customer-name').value;
+    const orderDate = document.getElementById('order-date').value;
+    const status = document.getElementById('status').value;
+    const paymentStatus = document.getElementById('payment-status').value;
+
+    const newOrder = { orderId, itemName, itemId, itemPrice, customerName, orderDate, status, paymentStatus };
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+    // यदि पहले से मौजूद ऑर्डर एडिट हो रहा है, तो उसे अपडेट करें
+    const existingIndex = orders.findIndex(order => order.orderId === orderId);
+    if (existingIndex !== -1) {
+        orders[existingIndex] = newOrder;
+    } else {
+        orders.push(newOrder);
+    }
+
+    localStorage.setItem('orders', JSON.stringify(orders));
+    document.getElementById('order-form').reset();
+    loadOrders();
+});
+
+// पेज लोड होते ही ऑर्डर दिखाएं
+loadOrders();
+
+    </script>
+</body>
+</html>
